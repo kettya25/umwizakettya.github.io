@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Erica Explores | Premium Travel Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Sora', 'sans-serif'],
+          },
+          colors: {
+            primary: '#3B82F6',
+            background: '#FFFFFF',
+            surface: '#F8FAFC',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-background text-slate-900 font-sans selection:bg-primary/20">
+  <!-- Navigation Shell -->
+  <nav id="main-nav" class="fixed top-0 w-full z-[100] opacity-0 pointer-events-none -translate-y-full border-b border-transparent" aria-label="Main Navigation">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16 md:h-20">
+        <div class="flex items-center space-x-2 cursor-pointer group" onclick="navigateTo('home')" role="link" aria-label="Go to Home">
+          <i data-lucide="map-pin" class="text-primary w-6 h-6 group-hover:scale-110 transition-transform"></i>
+          <span class="font-display font-bold text-xl tracking-tight">ERICA EXPLORES</span>
+        </div>
+        <div class="hidden md:flex items-center space-x-8 text-sm font-bold uppercase tracking-widest">
+          <a href="#home" class="nav-link hover:text-primary transition-colors">Home</a>
+          <a href="#destinations" class="nav-link hover:text-primary transition-colors">Destinations</a>
+          <a href="#blog" class="nav-link hover:text-primary transition-colors">Blog</a>
+          <a href="#gallery" class="nav-link hover:text-primary transition-colors">Gallery</a>
+          <a href="#about" class="nav-link hover:text-primary transition-colors">About</a>
+          <a href="#contact" class="bg-primary text-white px-6 py-2.5 rounded-full hover:bg-blue-600 transition-all shadow-md hover:shadow-xl hover:-translate-y-0.5 active:scale-95">Contact</a>
+        </div>
+        <button class="md:hidden p-2 hover:bg-slate-100 rounded-lg transition-colors" id="mobile-menu-btn" aria-label="Open Mobile Menu">
+          <i data-lucide="menu" class="w-6 h-6 text-slate-900"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+  <!-- Mobile Menu -->
+  <div id="mobile-overlay" class="fixed inset-0 bg-white z-[200] flex flex-col items-center justify-center space-y-8 opacity-0 pointer-events-none transition-all duration-300" aria-hidden="true">
+    <button class="absolute top-6 right-6 p-2 hover:bg-slate-100 rounded-full transition-colors" id="close-menu-btn" aria-label="Close Mobile Menu">
+      <i data-lucide="x" class="w-8 h-8 text-slate-900"></i>
+    </button>
+    <a href="#home" class="text-3xl font-display font-bold hover:text-primary transition-colors" onclick="toggleMenu()">Home</a>
+    <a href="#destinations" class="text-3xl font-display font-bold hover:text-primary transition-colors" onclick="toggleMenu()">Destinations</a>
+    <a href="#blog" class="text-3xl font-display font-bold hover:text-primary transition-colors" onclick="toggleMenu()">Blog</a>
+    <a href="#gallery" class="text-3xl font-display font-bold hover:text-primary transition-colors" onclick="toggleMenu()">Gallery</a>
+    <a href="#about" class="text-3xl font-display font-bold hover:text-primary transition-colors" onclick="toggleMenu()">About</a>
+    <a href="#contact" class="text-3xl font-display font-bold text-primary" onclick="toggleMenu()">Contact</a>
+  </div>
+  <main id="view-container">
+    <!-- Splash View -->
+    <section id="view-splash" class="view fixed inset-0 z-[150] bg-slate-900 flex items-center justify-center">
+      <div class="absolute inset-0 overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=2000" class="w-full h-full object-cover opacity-50 animate-slow-zoom" alt="Mountain road landscape">
+      </div>
+      <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+        <h1 class="text-white text-5xl md:text-8xl font-display font-bold mb-6 animate-fade-in-up tracking-tight">Adventure Awaits</h1>
+        <p class="text-slate-200 text-lg md:text-2xl max-w-2xl mx-auto mb-10 animate-fade-in-up delay-200 font-light leading-relaxed">Curated travel stories and photography from the world's most breathtaking corners.</p>
+        <button onclick="navigateTo('home')" class="bg-white text-slate-900 px-10 py-5 rounded-full font-bold uppercase tracking-widest hover:bg-primary hover:text-white transition-all shadow-2xl animate-fade-in-up delay-500 hover:scale-105 active:scale-95" aria-label="Start exploring Erica's portfolio">Explore Now</button>
+      </div>
+    </section>
+    <!-- Home View -->
+    <section id="view-home" class="view hidden">
+      <div class="relative h-[90vh] flex items-center overflow-hidden">
+        <div class="absolute inset-0">
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=2000" class="w-full h-full object-cover" alt="Tropical Maldives beach">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+          <div class="max-w-2xl text-white">
+            <span class="inline-block px-4 py-1.5 bg-primary/90 backdrop-blur-sm rounded-full text-[10px] font-black uppercase tracking-[0.2em] mb-8">Latest Journey: Maldives</span>
+            <h2 class="text-6xl md:text-8xl font-display font-bold mb-8 leading-[0.9] tracking-tighter">Waking up in Paradise</h2>
+            <p class="text-xl text-slate-100 mb-12 leading-relaxed font-light">Discover why the crystal blue waters of the Indian Ocean are more than just a destination—they're a soul-cleansing experience.</p>
+            <div class="flex flex-wrap gap-6">
+              <button onclick="navigateTo('blog')" class="bg-white text-slate-900 px-10 py-5 rounded-full font-bold hover:bg-primary hover:text-white transition-all shadow-lg hover:-translate-y-1">Read Story</button>
+              <button onclick="navigateTo('gallery')" class="border-2 border-white/50 text-white px-10 py-5 rounded-full font-bold hover:bg-white hover:text-slate-900 transition-all backdrop-blur-sm">View Gallery</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-8">
+          <div class="reveal-on-scroll">
+            <h3 class="text-5xl font-display font-bold mb-6 tracking-tight">Popular Destinations</h3>
+            <p class="text-slate-600 max-w-md text-xl font-light">Handpicked locations that captured my heart and lens this year.</p>
+          </div>
+          <button onclick="navigateTo('destinations')" class="group text-primary font-bold flex items-center text-lg py-2" aria-label="View all destinations">
+            View All <i data-lucide="chevron-right" class="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform text-primary"></i>
+          </button>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div class="group cursor-pointer reveal-on-scroll" onclick="navigateTo('destinations')">
+            <div class="aspect-[4/5] overflow-hidden rounded-[2.5rem] mb-6 relative shadow-xl hover-card">
+              <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" alt="Positano Italy coast" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-70 group-hover:opacity-100 transition-opacity"></div>
+              <div class="absolute bottom-8 left-8 text-white">
+                <p class="text-[10px] uppercase tracking-[0.2em] font-black text-primary mb-2">Europe</p>
+                <h4 class="text-4xl font-bold tracking-tight">Positano, Italy</h4>
+              </div>
+            </div>
+          </div>
+          <div class="group cursor-pointer reveal-on-scroll delay-100" onclick="navigateTo('destinations')">
+            <div class="aspect-[4/5] overflow-hidden rounded-[2.5rem] mb-6 relative shadow-xl hover-card">
+              <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" alt="Kyoto Japanese Temple" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-70 group-hover:opacity-100 transition-opacity"></div>
+              <div class="absolute bottom-8 left-8 text-white">
+                <p class="text-[10px] uppercase tracking-[0.2em] font-black text-primary mb-2">Asia</p>
+                <h4 class="text-4xl font-bold tracking-tight">Kyoto, Japan</h4>
+              </div>
+            </div>
+          </div>
+          <div class="group cursor-pointer reveal-on-scroll delay-200" onclick="navigateTo('destinations')">
+            <div class="aspect-[4/5] overflow-hidden rounded-[2.5rem] mb-6 relative shadow-xl hover-card">
+              <img src="https://images.unsplash.com/photo-1506929197327-0e206e1293c3?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" alt="Santorini Greece architecture" loading="lazy">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-70 group-hover:opacity-100 transition-opacity"></div>
+              <div class="absolute bottom-8 left-8 text-white">
+                <p class="text-[10px] uppercase tracking-[0.2em] font-black text-primary mb-2">Europe</p>
+                <h4 class="text-4xl font-bold tracking-tight">Santorini, Greece</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Destinations View -->
+    <section id="view-destinations" class="view hidden pt-32 pb-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-24 reveal-on-scroll">
+          <h2 class="text-6xl font-display font-bold mb-8 tracking-tighter">Explore the Globe</h2>
+          <p class="text-slate-500 text-xl font-light leading-relaxed">From bustling cityscapes to serene mountain peaks, discover my detailed guides for every location I've explored.</p>
+        </div>
+        <div class="flex flex-wrap justify-center gap-4 mb-20 reveal-on-scroll">
+          <button class="bg-primary text-white px-8 py-3 rounded-full shadow-lg font-bold text-sm uppercase tracking-widest">All Regions</button>
+          <button class="bg-white border border-slate-200 hover:border-primary px-8 py-3 rounded-full transition-all text-sm uppercase tracking-widest font-bold text-slate-400 hover:text-primary">Europe</button>
+          <button class="bg-white border border-slate-200 hover:border-primary px-8 py-3 rounded-full transition-all text-sm uppercase tracking-widest font-bold text-slate-400 hover:text-primary">Asia</button>
+          <button class="bg-white border border-slate-200 hover:border-primary px-8 py-3 rounded-full transition-all text-sm uppercase tracking-widest font-bold text-slate-400 hover:text-primary">Americas</button>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div class="bg-white rounded-[2.5rem] overflow-hidden shadow-sm border border-slate-100 hover:shadow-2xl transition-all duration-500 group reveal-on-scroll">
+            <div class="h-72 overflow-hidden relative">
+              <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" alt="Iconic view of the Colosseum in Rome, Italy" loading="lazy">
+              <span class="absolute top-6 left-6 bg-white/95 backdrop-blur px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest text-primary">Italy</span>
+            </div>
+            <div class="p-10">
+              <h4 class="text-3xl font-bold mb-4 tracking-tight">The Eternal City: Rome</h4>
+              <p class="text-slate-500 text-base mb-8 leading-relaxed font-light line-clamp-3">Exploring the Colosseum at dawn and finding the best Carbonara in the winding streets of Trastevere.</p>
+              <button class="text-primary font-black text-sm uppercase tracking-widest flex items-center group/btn">
+                Read Guide <i data-lucide="arrow-right" class="w-4 h-4 ml-2 group-hover/btn:translate-x-2 transition-transform text-primary"></i>
+              </button>
+            </div>
+          </div>
+          <div class="bg-white rounded-[2.5rem] overflow-hidden shadow-sm border border-slate-100 hover:shadow-2xl transition-all duration-500 group reveal-on-scroll" style="transition-delay: 0.1s">
+            <div class="h-72 overflow-hidden relative">
+              <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" alt="Banff National Park" loading="lazy">
+              <span class="absolute top-6 left-6 bg-white/95 backdrop-blur px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest text-primary">Canada</span>
+            </div>
+            <div class="p-10">
+              <h4 class="text-3xl font-bold mb-4 tracking-tight">Banff National Park</h4>
+              <p class="text-slate-500 text-base mb-8 leading-relaxed font-light line-clamp-3">Turquoise lakes and towering peaks in the heart of the Canadian Rockies. A paradise for nature lovers.</p>
+              <button class="text-primary font-black text-sm uppercase tracking-widest flex items-center group/btn">
+                Read Guide <i data-lucide="arrow-right" class="w-4 h-4 ml-2 group-hover/btn:translate-x-2 transition-transform text-primary"></i>
+              </button>
+            </div>
+          </div>
+          <div class="bg-white rounded-[2.5rem] overflow-hidden shadow-sm border border-slate-100 hover:shadow-2xl transition-all duration-500 group reveal-on-scroll" style="transition-delay: 0.2s">
+            <div class="h-72 overflow-hidden relative">
+              <img src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" alt="Ubud Bali rice fields" loading="lazy">
+              <span class="absolute top-6 left-6 bg-white/95 backdrop-blur px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest text-primary">Indonesia</span>
+            </div>
+            <div class="p-10">
+              <h4 class="text-3xl font-bold mb-4 tracking-tight">Spiritual Ubud</h4>
+              <p class="text-slate-500 text-base mb-8 leading-relaxed font-light line-clamp-3">Navigating the rice terraces, ancient temples, and vibrant art scene of Bali's cultural heart.</p>
+              <button class="text-primary font-black text-sm uppercase tracking-widest flex items-center group/btn">
+                Read Guide <i data-lucide="arrow-right" class="w-4 h-4 ml-2 group-hover/btn:translate-x-2 transition-transform text-primary"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Blog View -->
+    <section id="view-blog" class="view hidden pt-32 pb-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <header class="mb-20 reveal-on-scroll">
+          <h2 class="text-6xl font-display font-bold mb-6 tracking-tighter">Travel Stories</h2>
+          <p class="text-slate-500 text-xl font-light">Deep dives into culture, food, and the art of slow travel.</p>
+        </header>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+          <div class="lg:col-span-8 space-y-24">
+            <article class="group reveal-on-scroll">
+              <div class="overflow-hidden rounded-[3rem] mb-10 aspect-[16/9] shadow-2xl relative">
+                <img src="https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" alt="Paris city sunset" loading="lazy">
+                <div class="absolute top-8 left-8 bg-primary text-white text-[10px] font-black px-6 py-2 rounded-full uppercase tracking-[0.25em] shadow-lg">Featured Story</div>
+              </div>
+              <div class="space-y-6">
+                <div class="flex items-center space-x-4 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+                  <span class="text-primary">Photography</span>
+                  <span class="w-1 h-1 bg-slate-300 rounded-full"></span>
+                  <span>June 12, 2024</span>
+                </div>
+                <h3 class="text-5xl font-display font-bold group-hover:text-primary transition-colors leading-tight tracking-tight">How to Capture the Perfect Golden Hour in Paris</h3>
+                <p class="text-slate-600 text-xl font-light leading-relaxed">Finding the right vantage point in the City of Light is an art form. In this guide, I share my top five secret spots for watching the sun dip below the horizon with a camera in hand.</p>
+                <button class="inline-flex items-center font-black text-sm uppercase tracking-widest border-b-2 border-primary pb-2 hover:text-primary transition-colors group/link">
+                  Read Full Article <i data-lucide="chevron-right" class="ml-2 w-4 h-4 group-hover/link:translate-x-2 transition-transform text-primary"></i>
+                </button>
+              </div>
+            </article>
+          </div>
+          <aside class="lg:col-span-4 space-y-16">
+            <div class="reveal-on-scroll">
+              <h4 class="text-[10px] font-black mb-10 border-l-4 border-primary pl-4 uppercase tracking-[0.3em] text-slate-400">Trending Now</h4>
+              <div class="space-y-10">
+                <div class="flex space-x-6 group cursor-pointer items-center">
+                  <div class="w-24 h-24 rounded-2xl overflow-hidden flex-shrink-0 shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1554371427-0467576f3f0e?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Vibrant aesthetic Japanese cafe interior with warm lighting" loading="lazy">
+                  </div>
+                  <div>
+                    <h5 class="font-bold text-lg leading-snug group-hover:text-primary transition-colors text-slate-900">The 10 Best Hidden Cafes in Tokyo</h5>
+                    <p class="text-slate-400 text-xs mt-2 font-medium">4 min read • Food</p>
+                  </div>
+                </div>
+                <div class="flex space-x-6 group cursor-pointer items-center">
+                  <div class="w-24 h-24 rounded-2xl overflow-hidden flex-shrink-0 shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80&w=200" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Tuscan Villa" loading="lazy">
+                  </div>
+                  <div>
+                    <h5 class="font-bold text-lg leading-snug group-hover:text-primary transition-colors text-slate-900">Staying in a 500-year-old Tuscan Villa</h5>
+                    <p class="text-slate-400 text-xs mt-2 font-medium">7 min read • Luxury</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="bg-slate-900 text-white p-12 rounded-[3rem] shadow-2xl reveal-on-scroll relative overflow-hidden">
+              <div class="absolute -top-12 -right-12 w-32 h-32 bg-primary/20 rounded-full blur-3xl"></div>
+              <h4 class="text-3xl font-display font-bold mb-6 relative z-10">Weekly Wanderlust</h4>
+              <p class="text-slate-400 text-base mb-10 font-light leading-relaxed relative z-10">Get my latest secret itineraries and travel tips delivered straight to your inbox.</p>
+              <form class="space-y-4 relative z-10">
+                <input type="email" placeholder="Your email address" class="w-full bg-white/10 border-white/20 border rounded-2xl px-6 py-5 text-sm focus:ring-2 ring-primary transition-all outline-none placeholder:text-slate-500" required>
+                <button type="submit" class="w-full bg-primary text-white font-black py-5 rounded-2xl text-xs uppercase tracking-widest hover:bg-blue-600 transition-all shadow-lg active:scale-95">Subscribe</button>
+              </form>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+    <!-- Gallery View -->
+    <section id="view-gallery" class="view hidden pt-32 pb-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-20 gap-8 reveal-on-scroll">
+                <div>
+                  <h2 class="text-6xl font-display font-bold mb-4 tracking-tighter">Visual Journals</h2>
+                  <p class="text-slate-500 text-xl font-light">Captured moments from a life in motion.</p>
+                </div>
+                <div class="flex space-x-3">
+                    <button class="p-4 bg-slate-50 border border-slate-100 rounded-2xl hover:bg-white hover:shadow-md transition-all text-primary" aria-label="Grid View"><i data-lucide="grid-3x3" class="w-6 h-6 text-primary"></i></button>
+                    <button class="p-4 bg-slate-50 border border-slate-100 rounded-2xl hover:bg-white hover:shadow-md transition-all text-slate-400" aria-label="Column View"><i data-lucide="columns" class="w-6 h-6 text-slate-400"></i></button>
+                </div>
+            </div>
+            <div class="masonry-grid" id="gallery-grid">
+                <div class="masonry-item reveal-on-scroll"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&q=80&w=800" alt="Serene mountain lake" class="rounded-[2rem] shadow-md" loading="lazy"></div>
+                <div class="masonry-item reveal-on-scroll" style="transition-delay: 0.1s"><img src="https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&q=80&w=800" alt="Mystical forest path" class="rounded-[2rem] shadow-md" loading="lazy"></div>
+                <div class="masonry-item reveal-on-scroll" style="transition-delay: 0.2s"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&q=80&w=800" alt="Tropical sunset beach" class="rounded-[2rem] shadow-md" loading="lazy"></div>
+                <div class="masonry-item reveal-on-scroll" style="transition-delay: 0.3s"><img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&q=80&w=800" alt="Modern city skyline" class="rounded-[2rem] shadow-md" loading="lazy"></div>
+                <div class="masonry-item reveal-on-scroll"><img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&q=80&w=800" alt="Snowy mountain peaks" class="rounded-[2rem] shadow-md" loading="lazy"></div>
+                <div class="masonry-item reveal-on-scroll"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&q=80&w=800" alt="Canoe on lake" class="rounded-[2rem] shadow-md" loading="lazy"></div>
+                <div class="masonry-item reveal-on-scroll"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=800" alt="Sunlight through trees" class="rounded-[2rem] shadow-md" loading="lazy"></div>
+            </div>
+        </div>
+    </section>
+    <!-- About View -->
+    <section id="view-about" class="view hidden pt-32 pb-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+          <div class="relative reveal-on-scroll">
+            <div class="aspect-[4/5] rounded-[4rem] overflow-hidden shadow-2xl relative z-10">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=1000" class="w-full h-full object-cover" alt="Erica portrait" loading="lazy">
+            </div>
+            <div class="absolute -bottom-12 -right-12 w-80 h-80 bg-primary/20 rounded-full blur-[100px] -z-10"></div>
+          </div>
+          <div class="space-y-12 reveal-on-scroll">
+            <h2 class="text-7xl font-display font-bold leading-[0.9] tracking-tighter text-slate-900">I'm Erica, a storyteller with a lens.</h2>
+            <div class="space-y-8 text-slate-500 text-xl leading-relaxed font-light">
+              <p>For the past five years, I've been wandering across continents, documenting the hidden gems and local flavors that make our world so vibrant.</p>
+              <p>My mission is to inspire you to step out of your comfort zone, whether it's a weekend getaway or a year-long expedition.</p>
+            </div>
+            <div class="grid grid-cols-3 gap-8 py-12 border-y border-slate-100">
+                <div class="text-center">
+                    <span class="block text-5xl font-display font-bold text-primary mb-2">42</span>
+                    <span class="text-[10px] uppercase font-black text-slate-400 tracking-[0.3em]">Countries</span>
+                </div>
+                <div class="text-center">
+                    <span class="block text-5xl font-display font-bold text-primary mb-2">150+</span>
+                    <span class="text-[10px] uppercase font-black text-slate-400 tracking-[0.3em]">Guides</span>
+                </div>
+                <div class="text-center">
+                    <span class="block text-5xl font-display font-bold text-primary mb-2">5k+</span>
+                    <span class="text-[10px] uppercase font-black text-slate-400 tracking-[0.3em]">Photos</span>
+                </div>
+            </div>
+            <div class="flex space-x-10">
+                <a href="#" class="text-slate-300 hover:text-primary transition-colors transform hover:scale-110" aria-label="Instagram"><i data-lucide="instagram" class="w-8 h-8 text-slate-300 hover:text-primary"></i></a>
+                <a href="#" class="text-slate-300 hover:text-primary transition-colors transform hover:scale-110" aria-label="Twitter"><i data-lucide="twitter" class="w-8 h-8 text-slate-300 hover:text-primary"></i></a>
+                <a href="#" class="text-slate-300 hover:text-primary transition-colors transform hover:scale-110" aria-label="YouTube"><i data-lucide="youtube" class="w-8 h-8 text-slate-300 hover:text-primary"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Contact View -->
+    <section id="view-contact" class="view hidden pt-32 pb-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-white rounded-[4rem] shadow-2xl overflow-hidden flex flex-col lg:flex-row border border-slate-100 reveal-on-scroll">
+            <div class="lg:w-2/5 bg-slate-900 text-white p-12 lg:p-24 flex flex-col justify-between relative overflow-hidden">
+                <div class="absolute -top-24 -right-24 w-80 h-80 bg-primary/30 rounded-full blur-[120px]"></div>
+                <div class="relative z-10">
+                    <h2 class="text-6xl font-display font-bold mb-8 tracking-tighter">Let's Connect</h2>
+                    <p class="text-slate-400 text-xl font-light mb-20 leading-relaxed">Interested in a collaboration, a photography print, or just want to swap travel tips? I'd love to hear from you.</p>
+                    <div class="space-y-12">
+                        <div class="flex items-center space-x-8">
+                            <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center border border-white/10 shadow-xl"><i data-lucide="mail" class="text-primary w-7 h-7"></i></div>
+                            <div>
+                                <p class="text-[10px] text-slate-500 uppercase tracking-widest font-black mb-1">Email me at</p>
+                                <p class="font-bold text-xl text-white">erica64@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-8">
+                            <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center border border-white/10 shadow-xl"><i data-lucide="map-pin" class="text-primary w-7 h-7"></i></div>
+                            <div>
+                                <p class="text-[10px] text-slate-500 uppercase tracking-widest font-black mb-1">Currently in</p>
+                                <p class="font-bold text-xl text-white">Kigali, Rwanda</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="lg:w-3/5 p-12 lg:p-24 bg-white">
+                <form id="contact-form" class="space-y-12">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-12">
+                        <div class="space-y-4">
+                            <label for="contact-firstname" class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">First Name</label>
+                            <input type="text" id="contact-firstname" required class="w-full border-b-2 border-slate-100 py-4 focus:border-primary focus:outline-none transition-all text-xl font-medium placeholder:text-slate-200" placeholder="Jane">
+                        </div>
+                        <div class="space-y-4">
+                            <label for="contact-lastname" class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Last Name</label>
+                            <input type="text" id="contact-lastname" required class="w-full border-b-2 border-slate-100 py-4 focus:border-primary focus:outline-none transition-all text-xl font-medium placeholder:text-slate-200" placeholder="Doe">
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <label for="contact-email" class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Email Address</label>
+                        <input type="email" id="contact-email" required class="w-full border-b-2 border-slate-100 py-4 focus:border-primary focus:outline-none transition-all text-xl font-medium placeholder:text-slate-200" placeholder="jane@example.com">
+                    </div>
+                    <div class="space-y-4">
+                        <label for="contact-message" class="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Message</label>
+                        <textarea id="contact-message" rows="4" required class="w-full border-b-2 border-slate-100 py-4 focus:border-primary focus:outline-none transition-all text-xl font-medium resize-none placeholder:text-slate-200" placeholder="Tell me about your project..."></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-primary text-white font-black py-6 rounded-3xl shadow-xl hover:bg-blue-600 hover:-translate-y-1 transition-all flex items-center justify-center space-x-4 uppercase tracking-[0.2em] text-sm active:scale-95">
+                        <span>Send Message</span>
+                        <i data-lucide="send" class="w-5 h-5 text-white"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="bg-surface py-24 border-t border-slate-100 mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="flex items-center justify-center space-x-2 mb-12 cursor-pointer group" onclick="navigateTo('home')">
+            <i data-lucide="map-pin" class="text-primary w-7 h-7 group-hover:scale-110 transition-transform"></i>
+            <span class="font-display font-bold text-3xl tracking-tight">ERICA EXPLORES</span>
+        </div>
+        <p class="text-slate-400 max-w-md mx-auto mb-16 text-xl italic font-light leading-relaxed">"Travel is the only thing you buy that makes you richer."</p>
+        <div class="flex flex-wrap justify-center gap-x-12 gap-y-6 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mb-20">
+            <button onclick="navigateTo('home')" class="hover:text-primary transition-colors uppercase tracking-[0.3em] font-black">Home</button>
+            <button onclick="navigateTo('destinations')" class="hover:text-primary transition-colors uppercase tracking-[0.3em] font-black">Destinations</button>
+            <button onclick="navigateTo('blog')" class="hover:text-primary transition-colors uppercase tracking-[0.3em] font-black">Blog</button>
+            <button onclick="navigateTo('gallery')" class="hover:text-primary transition-colors uppercase tracking-[0.3em] font-black">Gallery</button>
+            <button onclick="navigateTo('about')" class="hover:text-primary transition-colors uppercase tracking-[0.3em] font-black">About</button>
+        </div>
+        <div class="pt-10 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-8">
+          <p class="text-slate-400 text-[10px] font-bold tracking-[0.1em] uppercase">© 2024 Erica Explores Travel Portfolio. All Rights Reserved.</p>
+          <div class="flex space-x-8">
+            <i data-lucide="instagram" class="w-5 h-5 text-slate-300 hover:text-primary cursor-pointer transition-all hover:scale-110"></i>
+            <i data-lucide="twitter" class="w-5 h-5 text-slate-300 hover:text-primary cursor-pointer transition-all hover:scale-110"></i>
+            <i data-lucide="youtube" class="w-5 h-5 text-slate-300 hover:text-primary cursor-pointer transition-all hover:scale-110"></i>
+          </div>
+        </div>
+    </div>
+  </footer>
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-8 py-5 rounded-3xl shadow-2xl opacity-0 pointer-events-none transition-all duration-500 transform translate-y-10 flex items-center space-x-5 z-[1000]" role="alert">
+      <div id="toast-icon-container" class="bg-green-500/20 p-1.5 rounded-full">
+        <i data-lucide="check-circle-2" class="text-green-400 w-6 h-6"></i>
+      </div>
+      <span id="toast-message" class="font-bold text-sm uppercase tracking-widest">Message sent successfully!</span>
+  </div>
+  <script src="/app.js" type="module"></script>
+</body>
+</html>
